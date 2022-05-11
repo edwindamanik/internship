@@ -24,7 +24,7 @@
 <body>
   <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-      <form class="col-12" method="POST">
+      <form class="col-12" method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>">
         <div class="form-group">
           <h4>Cetak Angka Ganjil Genap</h4>
         </div>
@@ -40,10 +40,29 @@
           <button type="submit" name="submit" class="form-control btn-success">Periksa</button>
         </div>
       </form>   
+      
     </div>  
 
     <div>
       <!-- Hasil Cetak Ganjil Genap -->
+      <div class="form-group">
+        <h3>Hasil</h3>
+      </div>
+      <?php 
+        $hasil = "";
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+          $bil1 = $_POST["bil1"];
+          $bil2 = $_POST["bil2"];
+
+          for($x = $bil1; $x <= $bil2; $x++) {
+            if(($x % 2) == 0) {
+              echo "<div class='form-control border border-primary'>Angka $x adalah genap</div><br>";
+            }else {
+              echo "<div class='form-control border border-warning'>Angka $x adalah ganjil</div><br>";
+            }
+          }
+        }
+      ?>
     </div>
   </div>
 </body>
